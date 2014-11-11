@@ -146,6 +146,12 @@
 					<var>regionMatches</var>
 				</imp>
 			</rule>
+			<rule>
+				<imp>
+					<var>stripToNull</var>
+					<var>strip</var>
+				</imp>
+			</rule>
 		</constraints>
 		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
 		<comments/>
