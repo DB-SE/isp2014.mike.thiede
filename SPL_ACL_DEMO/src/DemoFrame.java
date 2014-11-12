@@ -6,6 +6,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -23,6 +24,8 @@ import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("all")
 public class DemoFrame extends JFrame implements ActionListener {
+	private static boolean		ordinalindexing	= false;
+	private static boolean		striptonull		= false;
 	private final JPanel		contentPane;
 	private final JTextField	textField;
 	private final JTextField	textField_1;
@@ -35,13 +38,26 @@ public class DemoFrame extends JFrame implements ActionListener {
 	private final JRadioButton	rdbtnOrdinalindexof;
 	private final JLabel		lblArgument1;
 	private final JLabel		lblArgument2;
-	private final ButtonGroup	buttonGroup	= new ButtonGroup();
+	private final ButtonGroup	buttonGroup		= new ButtonGroup();
 	private final JPanel		panel;
 	private final JButton		btnRun;
 	private final JSpinner		spinner;
 	private final JLabel		lblArgument3;
-	
+
 	public static void main(String[] args) {
+		System.out.println(Arrays.toString(args));
+		for (String s : args) {
+			if (s.equalsIgnoreCase("oi")) {
+				ordinalindexing = true;
+			}
+			else if (s.equalsIgnoreCase("stn")) {
+				striptonull = true;
+			}
+			else {
+				usage();
+				return;
+			}
+		}
 		try {
 			LookAndFeelInfo[] list = UIManager.getInstalledLookAndFeels();
 			UIManager.setLookAndFeel(list[1].getClassName());
@@ -61,8 +77,9 @@ public class DemoFrame extends JFrame implements ActionListener {
 			}
 		});
 	}
-	
+
 	public DemoFrame() {
+		System.out.println("");
 		setTitle("Unofficial Apache Commons Lang Demo Utility");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 550, 330);
@@ -76,8 +93,8 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbl_contentPane.columnWeights = new double[] { 0.0, 1.0 };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-		
-		JLabel lblSelectOneOf = new JLabel("Select one of the features to look what is makes:");
+
+		JLabel lblSelectOneOf = new JLabel("Select one of the features to look what it makes:");
 		GridBagConstraints gbc_lblSelectOneOf = new GridBagConstraints();
 		gbc_lblSelectOneOf.gridwidth = 2;
 		gbc_lblSelectOneOf.insets = new Insets(0, 0, 5, 0);
@@ -85,7 +102,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_lblSelectOneOf.gridx = 0;
 		gbc_lblSelectOneOf.gridy = 0;
 		contentPane.add(lblSelectOneOf, gbc_lblSelectOneOf);
-		
+
 		panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
@@ -97,16 +114,21 @@ public class DemoFrame extends JFrame implements ActionListener {
 		panel.setLayout(new FlowLayout(FlowLayout.LEADING, 5, 5));
 		
 		rdbtnStriptonull = new JRadioButton("stripToNull");
-		rdbtnStriptonull.addActionListener(this);
-		rdbtnStriptonull.setSelected(true);
-		panel.add(rdbtnStriptonull);
-		buttonGroup.add(rdbtnStriptonull);
-		
+		if (striptonull) {
+			rdbtnStriptonull.addActionListener(this);
+			rdbtnStriptonull.setSelected(true);
+			panel.add(rdbtnStriptonull);
+			buttonGroup.add(rdbtnStriptonull);
+		}
+
 		rdbtnStripStart = new JRadioButton("stripStart");
 		rdbtnStripStart.addActionListener(this);
+		if (!striptonull) {
+			rdbtnStripStart.setSelected(true);
+		}
 		panel.add(rdbtnStripStart);
 		buttonGroup.add(rdbtnStripStart);
-		
+
 		rdbtnStripEnd = new JRadioButton("stripEnd");
 		rdbtnStripEnd.addActionListener(this);
 		panel.add(rdbtnStripEnd);
@@ -121,12 +143,14 @@ public class DemoFrame extends JFrame implements ActionListener {
 		rdbtnIndexofany.addActionListener(this);
 		panel.add(rdbtnIndexofany);
 		buttonGroup.add(rdbtnIndexofany);
-		
+
 		rdbtnOrdinalindexof = new JRadioButton("ordinalIndexOf");
-		rdbtnOrdinalindexof.addActionListener(this);
-		panel.add(rdbtnOrdinalindexof);
-		buttonGroup.add(rdbtnOrdinalindexof);
-		
+		if (ordinalindexing) {
+			rdbtnOrdinalindexof.addActionListener(this);
+			panel.add(rdbtnOrdinalindexof);
+			buttonGroup.add(rdbtnOrdinalindexof);
+		}
+
 		lblArgument1 = new JLabel("Argument 1 (String/char):");
 		GridBagConstraints gbc_lblArgument = new GridBagConstraints();
 		gbc_lblArgument.insets = new Insets(0, 0, 5, 5);
@@ -134,7 +158,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_lblArgument.gridx = 0;
 		gbc_lblArgument.gridy = 2;
 		contentPane.add(lblArgument1, gbc_lblArgument);
-		
+
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.insets = new Insets(0, 0, 5, 0);
@@ -143,7 +167,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_textField.gridy = 2;
 		contentPane.add(textField, gbc_textField);
 		textField.setColumns(10);
-		
+
 		lblArgument2 = new JLabel("Argument 2 (String/char):");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.WEST;
@@ -151,7 +175,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 3;
 		contentPane.add(lblArgument2, gbc_lblNewLabel);
-		
+
 		textField_1 = new JTextField();
 		GridBagConstraints gbc_textField_1 = new GridBagConstraints();
 		gbc_textField_1.insets = new Insets(0, 0, 5, 0);
@@ -160,10 +184,10 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_textField_1.gridy = 3;
 		contentPane.add(textField_1, gbc_textField_1);
 		textField_1.setColumns(10);
-
+		
 		btnRun = new JButton("Run");
 		btnRun.addActionListener(this);
-
+		
 		lblArgument3 = new JLabel("Argument 3 (int >=0):");
 		GridBagConstraints gbc_lblArgumentinteger = new GridBagConstraints();
 		gbc_lblArgumentinteger.anchor = GridBagConstraints.WEST;
@@ -171,7 +195,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_lblArgumentinteger.gridx = 0;
 		gbc_lblArgumentinteger.gridy = 4;
 		contentPane.add(lblArgument3, gbc_lblArgumentinteger);
-
+		
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(new Integer(0), new Integer(0), null, new Integer(1)));
 		GridBagConstraints gbc_spinner = new GridBagConstraints();
@@ -186,7 +210,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_btnRun.gridx = 1;
 		gbc_btnRun.gridy = 5;
 		contentPane.add(btnRun, gbc_btnRun);
-		
+
 		txtrOutputWillBe = new JTextArea();
 		txtrOutputWillBe.setEditable(false);
 		txtrOutputWillBe.setTabSize(2);
@@ -199,8 +223,10 @@ public class DemoFrame extends JFrame implements ActionListener {
 		gbc_txtrOutputWillBe.gridx = 0;
 		gbc_txtrOutputWillBe.gridy = 6;
 		contentPane.add(txtrOutputWillBe, gbc_txtrOutputWillBe);
+		
+		setupInput(striptonull ? rdbtnStriptonull : rdbtnStripStart);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(btnRun)) {
@@ -235,7 +261,14 @@ public class DemoFrame extends JFrame implements ActionListener {
 			}
 			txtrOutputWillBe.append(":\n\n\"" + res + "\"");
 		}
-		else if (e.getSource().equals(rdbtnStriptonull)) {
+		else {
+			setupInput(e.getSource());
+		}
+	}
+
+	private void setupInput(Object reference) {
+		if (reference == null) return;
+		if (reference.equals(rdbtnStriptonull)) {
 			lblArgument1.setVisible(true);
 			lblArgument2.setVisible(false);
 			lblArgument3.setVisible(false);
@@ -243,7 +276,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 			textField_1.setVisible(false);
 			spinner.setVisible(false);
 		}
-		else if (e.getSource().equals(rdbtnStripStart)) {
+		else if (reference.equals(rdbtnStripStart)) {
 			lblArgument1.setVisible(true);
 			lblArgument2.setVisible(true);
 			lblArgument3.setVisible(false);
@@ -251,7 +284,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 			textField_1.setVisible(true);
 			spinner.setVisible(false);
 		}
-		else if (e.getSource().equals(rdbtnStripEnd)) {
+		else if (reference.equals(rdbtnStripEnd)) {
 			lblArgument1.setVisible(true);
 			lblArgument2.setVisible(true);
 			lblArgument3.setVisible(false);
@@ -259,7 +292,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 			textField_1.setVisible(true);
 			spinner.setVisible(false);
 		}
-		else if (e.getSource().equals(rdbtnIndexof)) {
+		else if (reference.equals(rdbtnIndexof)) {
 			lblArgument1.setVisible(true);
 			lblArgument2.setVisible(true);
 			lblArgument3.setVisible(false);
@@ -267,7 +300,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 			textField_1.setVisible(true);
 			spinner.setVisible(false);
 		}
-		else if (e.getSource().equals(rdbtnIndexofany)) {
+		else if (reference.equals(rdbtnIndexofany)) {
 			lblArgument1.setVisible(true);
 			lblArgument2.setVisible(true);
 			lblArgument3.setVisible(false);
@@ -275,7 +308,7 @@ public class DemoFrame extends JFrame implements ActionListener {
 			textField_1.setVisible(true);
 			spinner.setVisible(false);
 		}
-		else if (e.getSource().equals(rdbtnOrdinalindexof)) {
+		else if (reference.equals(rdbtnOrdinalindexof)) {
 			lblArgument1.setVisible(true);
 			lblArgument2.setVisible(false);
 			lblArgument3.setVisible(true);
@@ -283,5 +316,12 @@ public class DemoFrame extends JFrame implements ActionListener {
 			textField_1.setVisible(false);
 			spinner.setVisible(true);
 		}
+	}
+
+	private static void usage() {
+		System.out.println("usage: java DemoFrame [oi] [stn]");
+		System.out.println("usage: java -jar (JAR-File) [oi] [stn]");
+		System.out.println("\t oi - enables ordinalIndexOf feature");
+		System.out.println("\t stn - enables stripToNull feature");
 	}
 }
