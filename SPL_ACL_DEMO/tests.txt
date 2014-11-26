@@ -1,0 +1,7 @@
+tested application with some combinations of features, result as expected, features are N/A if not enabled by local #define or global defines in project roperties.
+
+Selectable features are:
+- striptonull
+- ordinalindexing
+- indexany
+- indexic

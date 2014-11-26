@@ -3,11 +3,14 @@ public class StringUtils {
 	public static final int		INDEX_NOT_FOUND	= -1;
 	public static final String	EMPTY			= "";
 	
+	// #ifdef striptonull
 	 public static String stripToNull(String str) {
 	 if (str == null) return null;
 	 str = strip(str, null);
 	 return str.isEmpty() ? null : str;
 	 }
+	
+	// #endif
 	
 	public static String strip(String str, final String stripChars) {
 		if (isEmpty(str)) return str;
@@ -67,7 +70,9 @@ public class StringUtils {
 		if (isEmpty(seq)) return INDEX_NOT_FOUND;
 		return CharSequenceUtils.indexOf(seq, searchChar, 0);
 	}
-
+	
+	// #ifdef indexany
+	
 	public static int indexOfAny(final CharSequence cs, final char... searchChars) {
 		if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) return INDEX_NOT_FOUND;
 		final int csLen = cs.length();
@@ -92,7 +97,10 @@ public class StringUtils {
 		if (isEmpty(cs) || isEmpty(searchChars)) return INDEX_NOT_FOUND;
 		return indexOfAny(cs, searchChars.toCharArray());
 	}
-
+	
+	// #endif
+	
+	// #ifdef ordinalindexing
 	public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
 		return ordinalIndexOf(str, searchStr, ordinal, false);
 	}
@@ -116,6 +124,9 @@ public class StringUtils {
 		return index;
 	}
 	
+	// #endif
+	
+	// #ifdef indexic
 	public static int indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
 		return indexOfIgnoreCase(str, searchStr, 0);
 	}
@@ -133,6 +144,8 @@ public class StringUtils {
 		}
 		return INDEX_NOT_FOUND;
 	}
+	
+	// #endif
 	
 	public static String left(final String str, final int len) {
 		if (str == null) return null;
