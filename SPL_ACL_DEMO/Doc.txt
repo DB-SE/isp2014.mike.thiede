@@ -1,0 +1,11 @@
+Test results 
+---------------
+Possible options are 'oi' and 'stn'. Program runs without errors regardless of selection.
+
+GUI options are showing or hidden if their corresponding cmd line parameters are given or not.
+
+Features are working independently.
+
+usage: java DemoFrame [oi] [stn]
+  oi - enables ordinalIndex feature 
+  stn - enables stripToNull feature 
