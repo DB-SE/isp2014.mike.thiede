@@ -1,19 +1,20 @@
 @SuppressWarnings("all")
 public class StringUtils {
-	public static final int	INDEX_NOT_FOUND	= -1;
-
-	public static String stripToNull(String str) {
-		if (str == null) return null;
-		str = strip(str, null);
-		return str.isEmpty() ? null : str;
-	}
+	public static final int		INDEX_NOT_FOUND	= -1;
+	public static final String	EMPTY			= "";
+	
+	 public static String stripToNull(String str) {
+	 if (str == null) return null;
+	 str = strip(str, null);
+	 return str.isEmpty() ? null : str;
+	 }
 	
 	public static String strip(String str, final String stripChars) {
 		if (isEmpty(str)) return str;
 		str = stripStart(str, stripChars);
 		return stripEnd(str, stripChars);
 	}
-
+	
 	public static String stripStart(final String str, final String stripChars) {
 		int strLen;
 		if (str == null || (strLen = str.length()) == 0) return str;
@@ -49,7 +50,7 @@ public class StringUtils {
 		}
 		return str.substring(0, end);
 	}
-
+	
 	public static boolean isEmpty(final CharSequence cs) {
 		return cs == null || cs.length() == 0;
 	}
@@ -61,7 +62,7 @@ public class StringUtils {
 		}
 		return false;
 	}
-
+	
 	public static int indexOf(final CharSequence seq, final int searchChar) {
 		if (isEmpty(seq)) return INDEX_NOT_FOUND;
 		return CharSequenceUtils.indexOf(seq, searchChar, 0);
@@ -113,5 +114,47 @@ public class StringUtils {
 		}
 		while (found < ordinal);
 		return index;
+	}
+	
+	public static int indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
+		return indexOfIgnoreCase(str, searchStr, 0);
+	}
+	
+	public static int indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr, int startPos) {
+		if (str == null || searchStr == null) return INDEX_NOT_FOUND;
+		if (startPos < 0) {
+			startPos = 0;
+		}
+		final int endLimit = str.length() - searchStr.length() + 1;
+		if (startPos > endLimit) return INDEX_NOT_FOUND;
+		if (searchStr.length() == 0) return startPos;
+		for (int i = startPos; i < endLimit; i++) {
+			if (CharSequenceUtils.regionMatches(str, true, i, searchStr, 0, searchStr.length())) return i;
+		}
+		return INDEX_NOT_FOUND;
+	}
+	
+	public static String left(final String str, final int len) {
+		if (str == null) return null;
+		if (len < 0) return EMPTY;
+		if (str.length() <= len) return str;
+		return str.substring(0, len);
+	}
+	
+	public static String right(final String str, final int len) {
+		if (str == null) return null;
+		if (len < 0) return EMPTY;
+		if (str.length() <= len) return str;
+		return str.substring(str.length() - len);
+	}
+	
+	public static String mid(final String str, int pos, final int len) {
+		if (str == null) return null;
+		if (len < 0 || pos > str.length()) return EMPTY;
+		if (pos < 0) {
+			pos = 0;
+		}
+		if (str.length() <= pos + len) return str.substring(pos);
+		return str.substring(pos, pos + len);
 	}
 }
