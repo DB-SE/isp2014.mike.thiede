@@ -30,19 +30,19 @@ public class DemoFrame extends JFrame implements ActionListener {
 	private final JSpinner		spinner_1;
 	private final JTextArea		txtrOutputWillBe;
 	// #ifdef indexany
-	private final JRadioButton	rdbtnIndexofany;
+//@	private final JRadioButton	rdbtnIndexofany;
 	// #endif
 	// #ifdef striptonull
-	private final JRadioButton	rdbtnStriptonull;
+//@	private final JRadioButton	rdbtnStriptonull;
 	// #endif
 	private final JRadioButton	rdbtnStripStart;
 	private final JRadioButton	rdbtnStripEnd;
 	private final JRadioButton	rdbtnIndexof;
 	// #ifdef ordinalindexing
-	private final JRadioButton	rdbtnOrdinalindexof;
+//@	private final JRadioButton	rdbtnOrdinalindexof;
 	// #endif
 	// #ifdef indexic
-	private final JRadioButton	rdbtnIndexofignorecase;
+//@	private final JRadioButton	rdbtnIndexofignorecase;
 	// #endif
 	private final JRadioButton	rdbtnLeft;
 	private final JRadioButton	rdbtnMid;
@@ -126,10 +126,10 @@ public class DemoFrame extends JFrame implements ActionListener {
 		buttonGroup.add(rdbtnStripEnd);
 		
 		// #ifdef striptonull
-		rdbtnStriptonull = new JRadioButton("stripToNull");
-		rdbtnStriptonull.addActionListener(this);
-		panel.add(rdbtnStriptonull);
-		buttonGroup.add(rdbtnStriptonull);
+//@		rdbtnStriptonull = new JRadioButton("stripToNull");
+//@		rdbtnStriptonull.addActionListener(this);
+//@		panel.add(rdbtnStriptonull);
+//@		buttonGroup.add(rdbtnStriptonull);
 		// #endif
 		
 		rdbtnIndexof = new JRadioButton("indexOf");
@@ -138,24 +138,24 @@ public class DemoFrame extends JFrame implements ActionListener {
 		buttonGroup.add(rdbtnIndexof);
 		
 		// #ifdef indexany
-		rdbtnIndexofany = new JRadioButton("indexOfAny");
-		rdbtnIndexofany.addActionListener(this);
-		panel.add(rdbtnIndexofany);
-		buttonGroup.add(rdbtnIndexofany);
+//@		rdbtnIndexofany = new JRadioButton("indexOfAny");
+//@		rdbtnIndexofany.addActionListener(this);
+//@		panel.add(rdbtnIndexofany);
+//@		buttonGroup.add(rdbtnIndexofany);
 		// #endif
 		
 		// #ifdef ordinalindexing
-		rdbtnOrdinalindexof = new JRadioButton("ordinalIndexOf");
-		rdbtnOrdinalindexof.addActionListener(this);
-		panel.add(rdbtnOrdinalindexof);
-		buttonGroup.add(rdbtnOrdinalindexof);
+//@		rdbtnOrdinalindexof = new JRadioButton("ordinalIndexOf");
+//@		rdbtnOrdinalindexof.addActionListener(this);
+//@		panel.add(rdbtnOrdinalindexof);
+//@		buttonGroup.add(rdbtnOrdinalindexof);
 		// #endif
 		
 		// #ifdef indexic
-		rdbtnIndexofignorecase = new JRadioButton("indexOfIgnoreCase");
-		rdbtnIndexofignorecase.addActionListener(this);
-		buttonGroup.add(rdbtnIndexofignorecase);
-		panel.add(rdbtnIndexofignorecase);
+//@		rdbtnIndexofignorecase = new JRadioButton("indexOfIgnoreCase");
+//@		rdbtnIndexofignorecase.addActionListener(this);
+//@		buttonGroup.add(rdbtnIndexofignorecase);
+//@		panel.add(rdbtnIndexofignorecase);
 		// #endif
 		
 		rdbtnLeft = new JRadioButton("left");
@@ -287,28 +287,28 @@ public class DemoFrame extends JFrame implements ActionListener {
 				txtrOutputWillBe.append("indexOf(\"" + s1 + "\", '" + (s2.isEmpty() ? 0 : s2.charAt(0)) + "')");
 			}
 			// #ifdef indexany
-			else if (rdbtnIndexofany.isSelected()) {
-				res = Integer.toString(StringUtils.indexOfAny(s1, s2));
-				txtrOutputWillBe.append("indexOfAny(\"" + s1 + "\", \"" + s2 + "\")");
-			}
+//@			else if (rdbtnIndexofany.isSelected()) {
+//@				res = Integer.toString(StringUtils.indexOfAny(s1, s2));
+//@				txtrOutputWillBe.append("indexOfAny(\"" + s1 + "\", \"" + s2 + "\")");
+//@			}
 			// #endif
 			// #ifdef ordinalindexing
-			else if (rdbtnOrdinalindexof.isSelected()) {
-				res = Integer.toString(StringUtils.ordinalIndexOf(s1, s2, i1));
-				txtrOutputWillBe.append("ordinalIndexOf(\"" + s1 + "\", \"" + s2 + "\", " + i1 + ")");
-			}
+//@			else if (rdbtnOrdinalindexof.isSelected()) {
+//@				res = Integer.toString(StringUtils.ordinalIndexOf(s1, s2, i1));
+//@				txtrOutputWillBe.append("ordinalIndexOf(\"" + s1 + "\", \"" + s2 + "\", " + i1 + ")");
+//@			}
 			// #endif
 			// #ifdef striptonull
-			else if (rdbtnStriptonull.isSelected()) {
-				res = StringUtils.stripToNull(s1);
-				txtrOutputWillBe.append("stringToNull(\"" + s1 + "\")");
-			}
+//@			else if (rdbtnStriptonull.isSelected()) {
+//@				res = StringUtils.stripToNull(s1);
+//@				txtrOutputWillBe.append("stringToNull(\"" + s1 + "\")");
+//@			}
 			// #endif
 			// #ifdef indexic
-			else if (rdbtnIndexofignorecase.isSelected()) {
-				res = Integer.toString(StringUtils.indexOfIgnoreCase(s1, s2));
-				txtrOutputWillBe.append("indexOfIgnoreCase(\"" + s1 + "\", \"" + s2 + "\")");
-			}
+//@			else if (rdbtnIndexofignorecase.isSelected()) {
+//@				res = Integer.toString(StringUtils.indexOfIgnoreCase(s1, s2));
+//@				txtrOutputWillBe.append("indexOfIgnoreCase(\"" + s1 + "\", \"" + s2 + "\")");
+//@			}
 			// #endif
 			else if (rdbtnLeft.isSelected()) {
 				res = StringUtils.left(s1, i1);
@@ -350,36 +350,36 @@ public class DemoFrame extends JFrame implements ActionListener {
 			lblArgument4.setVisible(false);
 		}
 		// #ifdef indexany
-		else if (reference.equals(rdbtnIndexofany)) {
-			lblArgument1.setVisible(true);
-			lblArgument2.setVisible(true);
-			lblArgument3.setVisible(false);
-			lblArgument4.setVisible(false);
-		}
+//@		else if (reference.equals(rdbtnIndexofany)) {
+//@			lblArgument1.setVisible(true);
+//@			lblArgument2.setVisible(true);
+//@			lblArgument3.setVisible(false);
+//@			lblArgument4.setVisible(false);
+//@		}
 		// #endif
 		// #ifdef ordinalindexing
-		else if (reference.equals(rdbtnOrdinalindexof)) {
-			lblArgument1.setVisible(true);
-			lblArgument2.setVisible(false);
-			lblArgument3.setVisible(true);
-			lblArgument4.setVisible(false);
-		}
+//@		else if (reference.equals(rdbtnOrdinalindexof)) {
+//@			lblArgument1.setVisible(true);
+//@			lblArgument2.setVisible(false);
+//@			lblArgument3.setVisible(true);
+//@			lblArgument4.setVisible(false);
+//@		}
 		// #endif
 		// #ifdef striptonull
-		else if (reference.equals(rdbtnStriptonull)) {
-			lblArgument1.setVisible(true);
-			lblArgument2.setVisible(false);
-			lblArgument3.setVisible(false);
-			lblArgument4.setVisible(false);
-		}
+//@		else if (reference.equals(rdbtnStriptonull)) {
+//@			lblArgument1.setVisible(true);
+//@			lblArgument2.setVisible(false);
+//@			lblArgument3.setVisible(false);
+//@			lblArgument4.setVisible(false);
+//@		}
 		// #endif
 		// #ifdef indexic
-		else if (reference.equals(rdbtnIndexofignorecase)) {
-			lblArgument1.setVisible(true);
-			lblArgument2.setVisible(true);
-			lblArgument3.setVisible(false);
-			lblArgument4.setVisible(false);
-		}
+//@		else if (reference.equals(rdbtnIndexofignorecase)) {
+//@			lblArgument1.setVisible(true);
+//@			lblArgument2.setVisible(true);
+//@			lblArgument3.setVisible(false);
+//@			lblArgument4.setVisible(false);
+//@		}
 		// #endif
 		else if (reference.equals(rdbtnLeft)) {
 			lblArgument1.setVisible(true);
