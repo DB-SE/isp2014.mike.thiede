@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<featureModel chosenLayoutAlgorithm="2">
+		<struct>
+			<and abstract="true" mandatory="true" name="SPLApacheCommonsLang">
+				<or abstract="true" name="StringUtils">
+					<or abstract="true" mandatory="true" name="StringEmptyChecks">
+						<feature mandatory="true" name="isEmpty">
+							<description>
+								Checks if a CharSequence is empty or null.
+							</description>
+						</feature>
+						<feature mandatory="true" name="isAnyEmpty">
+							<description>
+								Checks if any one of the CharSequences are empty or null.
+							</description>
+						</feature>
+					</or>
+					<or abstract="true" mandatory="true" name="Stripping">
+						<feature mandatory="true" name="stripToNull">
+							<description>
+								Strips whitespace from the start and end of a String returning null if the String is empty after the strip.
+							</description>
+						</feature>
+						<feature mandatory="true" name="strip">
+							<description>
+								Strips any of a set of characters from the start and end of a String. This is similar to String.trim() but allows the characters to be stripped to be controlled.
+							</description>
+						</feature>
+						<feature mandatory="true" name="stripStart">
+							<description>
+								Strips any of a set of characters from the beginning of a String.
+							</description>
+						</feature>
+						<feature mandatory="true" name="stripEnd">
+							<description>
+								Strips any of a set of characters from the end of a String.
+							</description>
+						</feature>
+					</or>
+					<or abstract="true" mandatory="true" name="Indexing">
+						<feature mandatory="true" name="indexOf">
+							<description>
+								Finds the first index within a CharSequence, handling null. This method uses String.indexOf(String, int) if possible.
+							</description>
+						</feature>
+						<feature mandatory="true" name="ordinalIndexOf">
+							<description>
+								Finds the n-th index within a String, handling null. This method uses String.indexOf(String) if possible.
+							</description>
+						</feature>
+						<feature mandatory="true" name="indexOfIgnoreCase">
+							<description>
+								Case in-sensitive find of the first index within a CharSequence.
+							</description>
+						</feature>
+						<feature mandatory="true" name="indexOfAny">
+							<description>
+								Search a CharSequence to find the first index of any character in the given set of characters.
+							</description>
+						</feature>
+					</or>
+					<or abstract="true" mandatory="true" name="SubStrings">
+						<feature mandatory="true" name="left">
+							<description>
+								Returns given number of characters from the end of a String.
+							</description>
+						</feature>
+						<feature mandatory="true" name="right">
+							<description>
+								Returns given number of characters from the beginning of a String.
+							</description>
+						</feature>
+						<feature mandatory="true" name="mid">
+							<description>
+								Returns given number of characters from the middle of a String.
+							</description>
+						</feature>
+						<feature mandatory="true" name="substringBefore">
+							<description>
+								Gets the substring before the first occurrence of a separator. The separator is not returned.
+							</description>
+						</feature>
+						<feature mandatory="true" name="substringAfter">
+							<description>
+								Gets the substring after the first occurrence of a separator. The separator is not returned.
+							</description>
+						</feature>
+					</or>
+				</or>
+				<or abstract="true" name="ArrayUtils">
+					<feature mandatory="true" name="isArrayEmpty">
+						<description>
+							Checks if an array of Objects is empty or null.
+						</description>
+					</feature>
+					<feature mandatory="true" name="addAll">
+						<description>
+							Adds all the elements of the given arrays into a new array.
+						</description>
+					</feature>
+				</or>
+				<or abstract="true" name="CharSequenceUtils">
+					<feature mandatory="true" name="regionMatches">
+						<description>
+							Tests if two CharSequence regions are equal.
+						</description>
+					</feature>
+					<feature mandatory="true" name="lastIndexOf">
+						<description>
+							Finds the last index in the CharSequence that matches the specified character.
+						</description>
+					</feature>
+					<feature mandatory="true" name="toCharArray">
+						<description>
+							Returns an array of chars representing this CharSequence.
+						</description>
+					</feature>
+				</or>
+			</and>
+		</struct>
+		<constraints>
+			<rule>
+				<imp>
+					<var>strip</var>
+					<conj>
+						<var>stripStart</var>
+						<var>stripEnd</var>
+					</conj>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>isAnyEmpty</var>
+					<var>isArrayEmpty</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>indexOfAny</var>
+					<var>isEmpty</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>indexOfIgnoreCase</var>
+					<var>regionMatches</var>
+				</imp>
+			</rule>
+			<rule>
+				<imp>
+					<var>stripToNull</var>
+					<var>strip</var>
+				</imp>
+			</rule>
+		</constraints>
+		<calculations Auto="true" Constraints="true" Features="true" Redundant="true" Tautology="true"/>
+		<comments/>
+		<featureOrder userDefined="false"/>
+	</featureModel>

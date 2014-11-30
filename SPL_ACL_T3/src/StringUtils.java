@@ -1,12 +1,16 @@
 @SuppressWarnings("all")
 public class StringUtils {
-	public static final int	INDEX_NOT_FOUND	= -1;
+	public static final int		INDEX_NOT_FOUND	= -1;
+	public static final String	EMPTY			= "";
 	
-	public static String stripToNull(String str) {
-		if (str == null) return null;
-		str = strip(str, null);
-		return str.isEmpty() ? null : str;
-	}
+	// #ifdef striptonull
+	 public static String stripToNull(String str) {
+	 if (str == null) return null;
+	 str = strip(str, null);
+	 return str.isEmpty() ? null : str;
+	 }
+	
+	// #endif
 	
 	public static String strip(String str, final String stripChars) {
 		if (isEmpty(str)) return str;
@@ -67,6 +71,8 @@ public class StringUtils {
 		return CharSequenceUtils.indexOf(seq, searchChar, 0);
 	}
 	
+	// #ifdef indexany
+	
 	public static int indexOfAny(final CharSequence cs, final char... searchChars) {
 		if (isEmpty(cs) || ArrayUtils.isEmpty(searchChars)) return INDEX_NOT_FOUND;
 		final int csLen = cs.length();
@@ -92,6 +98,9 @@ public class StringUtils {
 		return indexOfAny(cs, searchChars.toCharArray());
 	}
 	
+	// #endif
+	
+	// #ifdef ordinalindexing
 	public static int ordinalIndexOf(final CharSequence str, final CharSequence searchStr, final int ordinal) {
 		return ordinalIndexOf(str, searchStr, ordinal, false);
 	}
@@ -113,5 +122,52 @@ public class StringUtils {
 		}
 		while (found < ordinal);
 		return index;
+	}
+	
+	// #endif
+	
+	// #ifdef indexic
+	public static int indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
+		return indexOfIgnoreCase(str, searchStr, 0);
+	}
+	
+	public static int indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr, int startPos) {
+		if (str == null || searchStr == null) return INDEX_NOT_FOUND;
+		if (startPos < 0) {
+			startPos = 0;
+		}
+		final int endLimit = str.length() - searchStr.length() + 1;
+		if (startPos > endLimit) return INDEX_NOT_FOUND;
+		if (searchStr.length() == 0) return startPos;
+		for (int i = startPos; i < endLimit; i++) {
+			if (CharSequenceUtils.regionMatches(str, true, i, searchStr, 0, searchStr.length())) return i;
+		}
+		return INDEX_NOT_FOUND;
+	}
+	
+	// #endif
+	
+	public static String left(final String str, final int len) {
+		if (str == null) return null;
+		if (len < 0) return EMPTY;
+		if (str.length() <= len) return str;
+		return str.substring(0, len);
+	}
+	
+	public static String right(final String str, final int len) {
+		if (str == null) return null;
+		if (len < 0) return EMPTY;
+		if (str.length() <= len) return str;
+		return str.substring(str.length() - len);
+	}
+	
+	public static String mid(final String str, int pos, final int len) {
+		if (str == null) return null;
+		if (len < 0 || pos > str.length()) return EMPTY;
+		if (pos < 0) {
+			pos = 0;
+		}
+		if (str.length() <= pos + len) return str.substring(pos);
+		return str.substring(pos, pos + len);
 	}
 }
