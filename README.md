@@ -8,4 +8,6 @@ Java project for task two uses some code from [Apache Commons Lang](http://commo
 
 License of that project can be found [here](http://www.apache.org/licenses/LICENSE-2.0).
 
-GUI and command line variability are created on my own.
+GUI, command line variability and preprocessor variability are created on my own.
+
+Projects are renamed to contain task number now.
