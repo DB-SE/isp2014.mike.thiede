@@ -1,0 +1,96 @@
+{
+	"features" : [
+		"SPLApacheCommonsLang",
+		"isEmpty",
+		"stripToNull",
+		"strip",
+		"stripStart",
+		"stripEnd",
+		"indexOf",
+		"ordinalIndexOf",
+		"indexOfIgnoreCase",
+		"indexOfAny",
+		"left",
+		"right",
+		"mid",
+		"isArrayEmpty",
+		"regionMatches",
+		"lastIndexOf"
+	],
+	"roles": {
+		"main": {
+			"SPLApacheCommonsLang": "main"
+		},
+		"actionPerformed": {
+			"SPLApacheCommonsLang": "actionPerformed__wrappee__SPLApacheCommonsLang",
+			"indexOf": "actionPerformed__wrappee__indexOf",
+			"indexOfIgnoreCase": "actionPerformed__wrappee__indexOfIgnoreCase",
+			"stripToNull": "actionPerformed__wrappee__stripToNull",
+			"indexOfAny": "actionPerformed__wrappee__indexOfAny",
+			"ordinalIndexOf": "actionPerformed__wrappee__ordinalIndexOf",
+			"stripEnd": "actionPerformed__wrappee__stripEnd",
+			"stripStart": "actionPerformed__wrappee__stripStart",
+			"left": "actionPerformed__wrappee__left",
+			"right": "actionPerformed__wrappee__right",
+			"mid": "actionPerformed"
+		},
+		"setupInput": {
+			"SPLApacheCommonsLang": "setupInput__wrappee__SPLApacheCommonsLang",
+			"indexOf": "setupInput__wrappee__indexOf",
+			"indexOfIgnoreCase": "setupInput__wrappee__indexOfIgnoreCase",
+			"stripToNull": "setupInput__wrappee__stripToNull",
+			"indexOfAny": "setupInput__wrappee__indexOfAny",
+			"ordinalIndexOf": "setupInput__wrappee__ordinalIndexOf",
+			"stripEnd": "setupInput__wrappee__stripEnd",
+			"stripStart": "setupInput__wrappee__stripStart",
+			"left": "setupInput__wrappee__left",
+			"right": "setupInput__wrappee__right",
+			"mid": "setupInput"
+		},
+		"indexOf": {
+			"indexOf": "indexOf"
+		},
+		"isEmpty": {
+			"isEmpty": "isEmpty",
+			"isArrayEmpty": "isEmpty"
+		},
+		"indexOfIgnoreCase": {
+			"indexOfIgnoreCase": "indexOfIgnoreCase"
+		},
+		"regionMatches": {
+			"regionMatches": "regionMatches"
+		},
+		"stripToNull": {
+			"stripToNull": "stripToNull"
+		},
+		"strip": {
+			"strip": "strip"
+		},
+		"stripEnd": {
+			"stripEnd": "stripEnd"
+		},
+		"stripStart": {
+			"stripStart": "stripStart"
+		},
+		"indexOfAny": {
+			"indexOfAny": "indexOfAny"
+		},
+		"ordinalIndexOf": {
+			"ordinalIndexOf": "ordinalIndexOf"
+		},
+		"lastIndexOf": {
+			"lastIndexOf": "lastIndexOf"
+		},
+		"left": {
+			"left": "left"
+		},
+		"right": {
+			"right": "right",
+			"mid": "right"
+		},
+		"mid": {
+			"mid": "mid"
+		}
+	}
+
+}
