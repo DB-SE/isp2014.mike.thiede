@@ -2,6 +2,7 @@
  * TODO description
  */
 public class CharSequenceUtils {
+	private static final int	NOT_FOUND	= -1;	
 	static int lastIndexOf(final CharSequence cs, final int searchChar, int start) {
 		if (cs instanceof String) return ((String) cs).lastIndexOf(searchChar, start);
 		final int sz = cs.length();
@@ -13,8 +14,7 @@ public class CharSequenceUtils {
 			if (cs.charAt(i) == searchChar) return i;
 		}
 		return NOT_FOUND;
-	}
-	
+	}	
 	static int lastIndexOf(final CharSequence cs, final CharSequence searchChar, final int start) {
 		return cs.toString().lastIndexOf(searchChar.toString(), start);
 	}

@@ -124,7 +124,10 @@
 					<var>strip</var>
 					<conj>
 						<var>stripStart</var>
-						<var>stripEnd</var>
+						<conj>
+							<var>stripEnd</var>
+							<var>isEmpty</var>
+						</conj>
 					</conj>
 				</imp>
 			</rule>

@@ -1,5 +1,6 @@
 @SuppressWarnings("all")
 public class StringUtils {
+	public static final int INDEX_NOT_FOUND=-1;
 	public static int indexOfIgnoreCase(final CharSequence str, final CharSequence searchStr) {
 		return indexOfIgnoreCase(str, searchStr, 0);
 	}
